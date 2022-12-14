@@ -1,14 +1,27 @@
-let myPromise = new Promise(function(resolve, reject) {
-  setTimeout(function() {
-    resolve();
-  }, 1000);
-});
+document.addEventListener("DOMContentLoaded", function(){
 
-myPromise
-  .then(function() {
-    return 99;
-  })
-  .then(function(number) {
-    console.log(number);
+  let myPromise = new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      let randomNumber = Math.random().toFixed(1)
+      console.log(`random number: ${randomNumber}`)
+      if (randomNumber > 0.5){
+        resolve()
+      }
+      else{
+        reject()
+      };
+    }, 1000);
   });
 
+  myPromise
+    .then(function() {
+      console.log('success');
+    })
+    .catch(function() {
+      console.log('fail');
+    })
+    .finally(function() {
+      console.log('complete');
+    })
+
+})
